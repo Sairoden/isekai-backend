@@ -30,3 +30,13 @@ exports.authUser = async (req, res) => {
     return res.status(400).send(err.message);
   }
 };
+
+exports.getAllUsers = async (req, res) => {
+  try {
+    let users = await User.find();
+
+    return res.status(200).send(users);
+  } catch (err) {
+    return res.status(400).send(err.message);
+  }
+};

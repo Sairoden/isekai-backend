@@ -6,10 +6,15 @@ dotenv.config({ path: "./config.env" });
 
 const PORT = process.env.PORT || 8000;
 
+const DB = process.env.DATABASE.replace(
+  "<PASSWORD>",
+  process.env.DATABASE_PASSWORD
+);
+
 mongoose
-  .connect(process.env.DB)
+  .connect(DB)
   .then(() => {
-    console.log(`Connected to ${process.env.DB}`);
+    console.log(`Connected to MongoDB`);
   })
   .catch(err => {
     console.log("Error connecting to mongoDB", err);
